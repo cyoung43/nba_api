@@ -21,3 +21,9 @@ def send_season(request):
         data = json.load(season)
 
     return JsonResponse(data, safe=False)
+
+def send_games(request):
+    with open(r'api\data\all_games.json') as games:
+        data = json.load(games)
+
+    return JsonResponse(data, safe=False)

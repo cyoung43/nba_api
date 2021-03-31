@@ -1,2 +1,2 @@
 # nba_api
-This is the backend api for my IS 542 project.
+This is my github repo for the IS 542 semester project.

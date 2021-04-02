@@ -10,13 +10,16 @@ export default function Loading (props) {
                     padding: '1rem',
                     alignText: 'center'
                 }}>{props.header} Loading...</h5> :
-                <>
-                <br /><br />
-                <h3 style={{
-                    padding: '1rem',
-                    alignText: 'center'
-                }}>{props.header} Loading...<Spinner animation='border' variant='secondary' /></h3>
-                </>
+                <div className='flex-column' style={{
+                    justifyContent: 'center'
+                }}>
+                    <br /><br />
+                    <h3 style={{
+                        padding: '1rem',
+                        alignText: 'center',
+                        alignContent: 'center'
+                    }}>{props.header} Loading... <Spinner animation='border' variant='secondary' /></h3>
+                </div>
             }
         </>
     )

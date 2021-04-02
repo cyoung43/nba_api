@@ -29,6 +29,9 @@ export default function Left () {
                     <hr style={{
                         width: '75%'
                     }}/>
+                    <div style={{
+                        paddingBottom: '1rem'
+                    }}>
                     {
                         Object.entries(team.name).map(name => {
                             return (
@@ -37,12 +40,14 @@ export default function Left () {
                                 }}>
                                     <Link key={name[0]} to={`/team/${name[0]}`} style={{
                                         paddingLeft: '.8rem',
-                                        color: 'black'
+                                        color: 'black',
+                                        fontSize: `${size ? '0.9rem' : '0.8rem'}`
                                     }}><strong>{name[0]}:</strong> {name[1]}</Link>
                                 </div>
                             )
                         })
                     }
+                    </div>
                 </Nav>
             </>
         )

@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AppContext from './context'
+import Nav from 'react-bootstrap/Nav'
+import Loading from './loading'
+import { Link } from 'react-router-dom'
 
 
 export default function Left () {
     const context = React.useContext(AppContext)
+    const [size, setSize] = useState(false)
     let team
 
     try {
@@ -12,38 +16,45 @@ export default function Left () {
 
         return (
             <>
-                <h5 style={{
-                    textAlign: 'center',
-                    paddingTop: '1rem'
-                }}>NBA Teams</h5>
-                <hr style={{
-                    width: '75%'
-                }}/>
-                <div style={{
-                    fontSize: '.8rem',
-                    paddingLeft: '1rem',
-                    paddingBottom: '1rem'
-                }}>
+                <Nav variant='light' className='flex-column p-1'>
+                    <Link to='/' style={{
+                        paddingTop: '1rem',
+                        color: 'black'
+                    }}>
+                        <h5 style={{
+                            textAlign: 'center',
+                            justifyContent: 'center'
+                        }}>NBA Teams</h5>
+                    </Link>
+                    <hr style={{
+                        width: '75%'
+                    }}/>
                     {
                         Object.entries(team.name).map(name => {
-                            console.log(name)
                             return (
-                                <>
-                                    <strong>{name[0]}: </strong>{name[1]} <br />
-                                </>
+                                <div key={name[0]} onMouseOver={() => setSize(true)} onMouseLeave={() => setSize(false)} style={{
+                                    fontSize: `${size ? '0.9rem' : '0.8rem'}`
+                                }}>
+                                    <Link key={name[0]} to={`/team/${name[0]}`} style={{
+                                        paddingLeft: '.8rem',
+                                        color: 'black'
+                                    }}><strong>{name[0]}:</strong> {name[1]}</Link>
+                                </div>
                             )
                         })
                     }
-                </div>
+                </Nav>
             </>
         )
     }
 
     catch(err) {
-        console.log(err)
+
         return (
             <>
-                Teams not loading...
+                <div>
+                    <Loading header='Teams'/>
+                </div>
             </>
         )
     }

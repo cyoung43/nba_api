@@ -12,8 +12,6 @@ export default function Left () {
 
     try {
         team = context.season
-        console.log(team)
-
         return (
             <>
                 <Nav variant='light' className='flex-column p-1'>

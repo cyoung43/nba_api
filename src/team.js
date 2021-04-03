@@ -3,13 +3,12 @@ import { useRouteMatch } from 'react-router-dom'
 import AppContext from './context'
 import Loading from './loading'
 import NotFound from './not_found'
-//import * as NBAIcons from 'react-nba-logos'
+import '@fortawesome/fontawesome-free/css/all.css'
 
 export default function Team () {
     const context = React.useContext(AppContext)
     const match = useRouteMatch({path: '/team/:id', strict: true, sensitive: true})
     let teams
-    
     
     try {
         teams = context.season
@@ -20,10 +19,17 @@ export default function Team () {
         }
         return (
             <>
-                <h1 style={{
+                <img alt='NBA Logo' src={`${process.env.PUBLIC_URL}/assets/logos/${match.params.id}.png`} 
+                    style={{
+                        height: '8rem',
+                        paddingTop: '1rem',
+                        paddingLeft: '2rem'
+                }} className='inline'/>
+                <h2 style={{
                     textAlign: 'center',
-                    paddingTop: '2rem'
-                }}>Team {teams.name[match.params.id]}</h1>
+                    paddingTop: '3rem',
+                    display: 'inline'
+                }}>Team {teams.name[match.params.id]}</h2>
             </>
         )
     }

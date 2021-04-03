@@ -23,9 +23,9 @@ export default function Navigator () {
             <bs.Navbar.Toggle aria-controls='basic-Navbar-Nav' />
             <bs.Navbar.Collapse id='basic-Navbar-Nav'>
                 <bs.Nav className='mr-auto'>
-                    <Link className='nav-link'>Players</Link>
-                    <Link className='nav-link'>Compare Teams</Link>
-                    <Link className='nav-link'>Live Scores</Link>            
+                    <Link className='nav-link' to='/player'>Players</Link>
+                    <Link className='nav-link' to='/compare'>Compare Teams</Link>
+                    <Link className='nav-link' to='scores'>Live Scores</Link>            
                 </bs.Nav>
                 <bs.Form inline>
                 <bs.FormControl type='text' placeholder='Search' className='mr-sm-2' />

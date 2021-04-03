@@ -7,6 +7,9 @@ import Bottom from './bottom'
 import Center from './center'
 import Team from './team'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import Compare from './compare'
+import Scores from './scores'
+import Player from './players'
 
 function App () {
 
@@ -25,6 +28,15 @@ function App () {
                 <bs.Col md='8'>
                     <Switch>
                         <Route path='/team' render={() => <Team />} />
+                        <Route path='/player'>
+                            <Player />
+                        </Route>
+                        <Route path='/compare'>
+                            <Compare />
+                        </Route>
+                        <Route path='/scores'>
+                            <Scores />
+                        </Route>
                         <Route path='/'>
                             <Center />
                         </Route>

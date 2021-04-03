@@ -4,6 +4,7 @@ import AppContext from './context'
 import Loading from './loading'
 import NotFound from './not_found'
 import '@fortawesome/fontawesome-free/css/all.css'
+import teamMapper from './mapper'
 
 export default function Team () {
     const context = React.useContext(AppContext)
@@ -12,6 +13,7 @@ export default function Team () {
     
     try {
         teams = context.season
+        console.log(teams.abbreviation)
         if (!teams.name[match.params.id]) {
             return (
                 <NotFound />
@@ -19,17 +21,17 @@ export default function Team () {
         }
         return (
             <>
-                <img alt='NBA Logo' src={`${process.env.PUBLIC_URL}/assets/logos/${match.params.id}.png`} 
+                <h2 style={{
+                    textAlign: 'center',
+                    paddingTop: '3rem',
+                    display: 'inline'
+                }}>{teams.name[match.params.id]}</h2>
+                <img alt={`${teams.name[match.params.id]} Logo`} src={`https://cdn.nba.net/assets/logos/teams/secondary/web/${teamMapper[match.params.id]}.svg`} 
                     style={{
                         height: '8rem',
                         paddingTop: '1rem',
                         paddingLeft: '2rem'
                 }} className='inline'/>
-                <h2 style={{
-                    textAlign: 'center',
-                    paddingTop: '3rem',
-                    display: 'inline'
-                }}>Team {teams.name[match.params.id]}</h2>
             </>
         )
     }

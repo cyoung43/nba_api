@@ -52,7 +52,7 @@ export default function Left () {
     }
 
     catch(err) {
-
+        console.log(err)
         return (
             <>
                 <div>

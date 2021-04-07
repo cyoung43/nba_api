@@ -1,37 +1,30 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useRouteMatch } from 'react-router-dom'
 import AppContext from './context'
 import Loading from './loading'
 import NotFound from './not_found'
 import '@fortawesome/fontawesome-free/css/all.css'
-import teamMapper from './mapper'
+import Dashboard from './team_dashboard'
 
 export default function Team () {
-    const context = React.useContext(AppContext)
+    const context = useContext(AppContext)
     const match = useRouteMatch({path: '/team/:id', strict: true, sensitive: true})
+    const team_id = match.params.id
     let teams
+    let schedule
     
     try {
         teams = context.season
-        console.log(teams.abbreviation)
-        if (!teams.name[match.params.id]) {
+        schedule = context.schedule
+        console.log(schedule)
+        if (!teams.name[team_id]) {
             return (
                 <NotFound />
             )
         }
         return (
             <>
-                <h2 style={{
-                    textAlign: 'center',
-                    paddingTop: '3rem',
-                    display: 'inline'
-                }}>{teams.name[match.params.id]}</h2>
-                <img alt={`${teams.name[match.params.id]} Logo`} src={`https://cdn.nba.net/assets/logos/teams/secondary/web/${teamMapper[match.params.id]}.svg`} 
-                    style={{
-                        height: '8rem',
-                        paddingTop: '1rem',
-                        paddingLeft: '2rem'
-                }} className='inline'/>
+                <Dashboard name={teams.name[team_id]} id={team_id} teams={teams} schedule={schedule}/>
             </>
         )
     }

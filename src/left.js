@@ -31,16 +31,16 @@ export default function Left () {
                         paddingBottom: '1rem'
                     }}>
                     {
-                        Object.entries(team.name).map(name => {
+                        Object.entries(team).map(team => {
                             return (
-                                <div key={name[0]} onMouseOver={() => setSize(true)} onMouseLeave={() => setSize(false)} style={{
+                                <div key={team[1].abbreviation} onMouseOver={() => setSize(true)} onMouseLeave={() => setSize(false)} style={{
                                     fontSize: `${size ? '0.9rem' : '0.8rem'}`
                                 }}>
-                                    <Link key={name[0]} to={`/team/${name[0]}`} style={{
+                                    <Link key={team[1].abbreviation} to={`/team/${team[1].abbreviation}`} style={{
                                         paddingLeft: '.8rem',
                                         color: 'black',
                                         fontSize: `${size ? '0.9rem' : '0.8rem'}`
-                                    }}><strong>{name[0]}:</strong> {name[1]}</Link>
+                                    }}><strong>{team[1].abbreviation}:</strong> {team[1].name}</Link>
                                 </div>
                             )
                         })

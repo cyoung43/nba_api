@@ -1,60 +1,36 @@
 import React from 'react'
 import * as bs from 'react-bootstrap'
 import teamMapper from './mapper'
-import Line from './area'
+import LineChart from './area'
+import { score_data } from './data_manipulation'
 
 export default function Dashboard (props) {
-    console.log(props.teams)
-    console.log(props.schedule)
-    const games = []
-    const scores = []
-    const opponent_scores = []
-    const opponent = []
-    Object.entries(props.schedule.home_team).map(game => {
-        if (game[1] === props.id) {
-            games.push(Number(game[0]))
-        }
-        return null
-    })
-    Object.entries(props.schedule.away_team).map(game => {
-        if (game[1] === props.id) {
-            games.push(Number(game[0]))
-        }
-        return null
-    })
-    Object.entries(props.schedule.points_scored).map(game => {
-        if (game[0] in games) {
-            scores.push(game[1])
-        }
-        return null
-    })
-    Object.entries(props.schedule.points_allowed).map(game => {
-        if (game[0] in games) {
-            opponent_scores.push(game[1])
-        }
-        return null
-    })
-    Object.entries(props.schedule.opponent_abbr).map(game => {
-        if (game[0] in games) {
-            opponent.push(game[1])
-        }
-        return null
-    })
-    console.log(scores)
+    let { scores, opponent_scores, opponent } = score_data(props.schedule, props.id)
 
     const data = {
         labels: opponent,
         datasets: [
             {
-                label: 'Points Scored',
-                data: scores
+                label: `Points Scored (${props.id})`,
+                data: scores,
+                borderColor: '#6E81F8',
+                fill: 'false',
+                backgroundColor: '#85C1E9',
+                pointRadius: 0,
+                tension: 0
             },
             {
                 label: 'Points Scored by Opponent',
-                data: opponent_scores
+                data: opponent_scores,
+                borderColor: '#DE6152',
+                fill: false,
+                backgroundColor: '#F5B7B1',
+                pointRadius: 0,
+                tension: 0
             }
         ]
     }
+
     return (
         <bs.Container>
             <bs.Row>
@@ -68,10 +44,41 @@ export default function Dashboard (props) {
                 </bs.Col>
             </bs.Row>
             <bs.Row>
-                <bs.Col md='6'>
-                    <Line data={data}/>
+                <bs.Col md='8'>
+                    <LineChart data={data} height={250} width={60} options={{
+                        maintainAspectRatio: false,
+                        title: {
+                            display: true,
+                            text: 'Team Scores vs Oppenents',
+                            fontSize: '18'
+                        },
+                        scales: {
+                            yAxes: [{
+                                gridLines: {
+                                    display: false
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Points Scored'
+                                },
+                                ticks: {
+                                    min: 40,
+                                    stepSize: 20
+                                }
+                            }],
+                            xAxes: [{
+                                gridLines: {
+                                    display: false
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Opponents Played 2021'
+                                }
+                            }]
+                        }
+                    }}/>
                 </bs.Col>
-                <bs.Col md='6'>
+                <bs.Col md='4'>
 
                 </bs.Col>
             </bs.Row>

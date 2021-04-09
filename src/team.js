@@ -17,14 +17,14 @@ export default function Team () {
         teams = context.season
         schedule = context.schedule
         console.log(schedule)
-        if (!teams.name[team_id]) {
+        if (!teams[team_id]) {
             return (
                 <NotFound />
             )
         }
         return (
             <>
-                <Dashboard name={teams.name[team_id]} id={team_id} teams={teams} schedule={schedule}/>
+                <Dashboard name={teams[team_id].name} id={team_id} teams={teams} schedule={schedule}/>
             </>
         )
     }

@@ -51,13 +51,11 @@ const team_points = (team, opponent, games) => {
 }
 
 const other_stats = (rebounds, assists, steals, turnovers, games) => {
-    console.log(rebounds, assists, steals, turnovers, games)
     const rpg = (rebounds / games).toFixed(2)
     const apg = (assists / games).toFixed(2)
     const spg = (steals / games).toFixed(2)
     const tpg = (turnovers / games).toFixed(2)
 
-    console.log(rpg, apg, spg, tpg)
     return [
         [rpg, 'rpg'],
         [apg, 'apg'],
@@ -66,4 +64,14 @@ const other_stats = (rebounds, assists, steals, turnovers, games) => {
     ]
 }
 
-export { score_data, team_points, other_stats }
+const shooting_percentages = (twos, threes, fg, ft, team) => {
+    const labels = [`${team} 2PT%`, `${team} 3PT%`, `${team} FG%`, `${team} FT%`]
+    const more_labels = ['Two Point Percentage', 'Three Point Percentage', 'Field Goal Percentage', 'Free Throw Percentage']
+    return [
+        [twos, threes, fg, ft],
+        labels,
+        more_labels
+    ]
+}
+
+export { score_data, team_points, other_stats, shooting_percentages }

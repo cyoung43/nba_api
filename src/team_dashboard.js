@@ -1,21 +1,24 @@
 import React from 'react'
 import * as bs from 'react-bootstrap'
 import teamMapper from './mapper'
-import LineChart from './area'
-import { score_data } from './data_manipulation'
+import LineChart from './line'
+import { score_data, team_points, other_stats } from './data_manipulation'
+import DonutChart from './donut'
 
 export default function Dashboard (props) {
-    let { scores, opponent_scores, opponent } = score_data(props.schedule, props.id)
-
-    const data = {
-        labels: opponent,
+    const team = props.teams[props.id]
+    const { scores, opponent_scores, opponent_name } = score_data(props.schedule, props.id)
+    const { team_pts, opponent_pts } = team_points(team.points, team.opp_points, team.games_played)
+    const stats = other_stats(team.total_rebounds, team.assists, team.steals, team.turnovers, team.games_played)
+    const line_data = {
+        labels: opponent_name,
         datasets: [
             {
                 label: `Points Scored (${props.id})`,
                 data: scores,
                 borderColor: '#6E81F8',
                 fill: 'false',
-                backgroundColor: '#85C1E9',
+                backgroundColor: '#6E81F8',
                 pointRadius: 0,
                 tension: 0
             },
@@ -30,26 +33,53 @@ export default function Dashboard (props) {
             }
         ]
     }
+    console.log(props.teams)
+    const donut_data = {
+        labels: [`Points Scored per Game (${props.id})`, 'Points Allowed per Game'],
+        datasets: [{
+            data: [team_pts, opponent_pts],
+            backgroundColor: [
+                '#6E81F8',
+                '#CD6155'
+            ],
+            hoverOffset: 10
+        }]
+    }
 
     return (
         <bs.Container>
             <bs.Row>
-                <bs.Col md='3'>
-                    <img alt='Team Logo' src={`https://cdn.nba.net/assets/logos/teams/secondary/web/${teamMapper[props.id]}.svg`}/>
+                <bs.Col md='2'>
+                    <img alt='Team Logo' src={`https://cdn.nba.net/assets/logos/teams/secondary/web/${teamMapper[props.id]}.svg`} style={{
+                        paddingLeft: '0.5rem'
+                    }} />
                 </bs.Col>
-                <bs.Col md='9'>
-                    <h2 className='inline' style={{
-                        paddingTop: '3rem'
-                    }}>{props.name}</h2>
+                <bs.Col md='10' style={{
+                    marginTop: '2rem',
+                    paddingRight: '2.5rem',
+                    paddingLeft: '2rem'
+                }}>
+                    <div style={{
+                        backgroundColor: 'rgba(0, 0, 0, 0.03)',
+                        border: '1px solid',
+                        borderColor: 'gray',
+                        borderRadius: '3px'
+                    }}>
+                        <h2 className='inline' style={{
+                            paddingTop: '1rem',
+                            paddingLeft: '2rem',
+                            paddingBottom: '1rem'
+                        }}>{props.name}</h2>
+                    </div>
                 </bs.Col>
             </bs.Row>
             <bs.Row>
                 <bs.Col md='8'>
-                    <LineChart data={data} height={250} width={60} options={{
+                    <LineChart data={line_data} height={250} width={60} options={{
                         maintainAspectRatio: false,
                         title: {
                             display: true,
-                            text: 'Team Scores vs Oppenents',
+                            text: 'Team Scores vs Opponents',
                             fontSize: '18'
                         },
                         scales: {
@@ -79,11 +109,44 @@ export default function Dashboard (props) {
                     }}/>
                 </bs.Col>
                 <bs.Col md='4'>
-
+                    <div style={{
+                        height: '10rem'
+                    }}>
+                        <DonutChart data={donut_data} height={10} width={10} options={{
+                            maintainAspectRatio: false,
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Points per Game',
+                                fontSize: '18'
+                            }
+                        }}/>
+                    </div>
                 </bs.Col>
             </bs.Row>
-            <bs.Row>
+            <bs.Row style={{
+                paddingTop: '1rem'
+            }}>
+                { stats.map(stat => {
+                        console.log(stat)
+                        return (
+                            <bs.Col md='3' key={stat[1]}>
+                                <bs.Card>
+                                    <bs.Card.Header as='h6' className='text-center'>
+                                        Rebounds Per Game
+                                    </bs.Card.Header>
+                                    <bs.Card.Body className='font-weight-bold text-center' style={{
+                                        fontSize: '2rem'
+                                    }}>
+                                        { stat[0] }
+                                    </bs.Card.Body>
+                                </bs.Card>
+                            </bs.Col>
 
+                        )
+                    }) }
             </bs.Row>
         </bs.Container>
     )

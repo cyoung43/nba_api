@@ -16,7 +16,6 @@ export default function Team () {
     try {
         teams = context.season
         schedule = context.schedule
-        console.log(schedule)
         if (!teams[team_id]) {
             return (
                 <NotFound />

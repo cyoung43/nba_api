@@ -10,6 +10,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Compare from './compare'
 import Scores from './scores'
 import Player from './players'
+import PlayerDashboard from './player_dashboard'
 
 function App () {
 
@@ -27,7 +28,12 @@ function App () {
                 </bs.Col>
                 <bs.Col md='8'>
                     <Switch>
-                        <Route path='/team' render={() => <Team />} />
+                        <Route path='/team'>
+                                <Team />
+                        </Route>
+                        <Route path='/player/:id'>
+                            <PlayerDashboard />
+                        </Route>
                         <Route path='/player'>
                             <Player />
                         </Route>

@@ -31,7 +31,7 @@ export default function Left () {
                         paddingBottom: '1rem'
                     }}>
                     {
-                        Object.entries(team).map(team => {
+                        Object.entries(team).sort((a, b) => (a[1].name > b[1].name ? 1 : -1)).map(team => {
                             return (
                                 <div key={team[1].abbreviation} onMouseOver={() => setSize(true)} onMouseLeave={() => setSize(false)} style={{
                                     fontSize: `${size ? '0.9rem' : '0.8rem'}`

@@ -10,7 +10,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Compare from './compare'
 import Scores from './scores'
 import Player from './players'
-import PlayerDashboard from './player_dashboard'
+import PlayerPage from './player_page'
 
 function App () {
 
@@ -32,7 +32,7 @@ function App () {
                                 <Team />
                         </Route>
                         <Route path='/player/:id'>
-                            <PlayerDashboard />
+                            <PlayerPage />
                         </Route>
                         <Route path='/player'>
                             <Player />

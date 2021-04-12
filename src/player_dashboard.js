@@ -1,24 +1,20 @@
 import React, { useContext, useState } from 'react'
 import AppContext from './context'
 import { useRouteMatch } from 'react-router-dom'
-import { match_player } from './player_functions'
+import { match_player, test_pic } from './player_functions'
+import * as bs from 'react-bootstrap'
 import Loading from './loading'
 import NotFound from './not_found'
-import anonymous from './img/anonymous.png'
 
 export default function PlayerDashboard (props) {
     const context = useContext(AppContext)
     const match = useRouteMatch({path: '/player/:id', strict: true, sensitive: true})
     const { player } = match_player(context.players, match.params.id.split('-'))
-    const [loaded, setLoad] = useState(true)
-    let nba, player_pic
+ 
     try {
-        nba = require('nba-api-client')
-        player_pic = nba.getPlayerID(player.name)
-        if (!player_pic) {
-            setLoad(false)
-        }
-        console.log(player_pic)
+        const nba = require('nba-api-client')
+        const player_pic = nba.getPlayerID(player.name)
+        const { pic_url } = test_pic(player_pic)
         if (!player) {
             return (
                 <div>
@@ -26,25 +22,30 @@ export default function PlayerDashboard (props) {
                 </div>
             )
         }
+        console.log(player)
         return (
-            <div>
-                Beginning of the player dashboard
-                {
-                    loaded ?
-                    <img src={`https://cdn.nba.com/headshots/nba/latest/1040x760/${player_pic.PlayerID}.png`} 
-                        alt={`${player.name} headshot`} style={{
-                            height: '12rem'
-                        }}/> :
-                    <img src={anonymous} 
-                    alt={`${player.name} headshot`} style={{
-                        height: '12rem'
-                    }}/>  
-                }
-                
-            </div>
+            <bs.Container>
+                <bs.Row>
+                    <bs.Col>
+                        <div>
+                            Beginning of the player dashboard
+                            <img src={pic_url} 
+                                alt={`${player.name} headshot`} style={{
+                                    height: '12rem'
+                                }}/>
+                        </div>
+
+                    </bs.Col>
+                </bs.Row>
+                <bs.Row>
+
+                </bs.Row>
+            </bs.Container>
+
         )  
     }
     catch (err) {
+        console.log(err)
         return (
             <div>
                 <Loading />
@@ -53,3 +54,7 @@ export default function PlayerDashboard (props) {
     }
     
 }
+
+
+// notes: from lighthouse report I decreased the size of my players json object
+// so that I would have better performance

@@ -21,7 +21,7 @@ const player_filter = (players, team, position) => {
                 }
             }
             else if (position) {
-                if (player[1].position?.split(',')[0] === position.value) {
+                if (player[1].position?.split(',')[0] === position.value || player[1].position?.split(',')[1] === position.value) {
                     player_names.push({
                         value: player[1].player_id,
                         label: player[1].name
@@ -61,29 +61,17 @@ const team_filters = (teams) => {
     return { filter }
 }
 
-const position_filter = (players) => {
-    const position = {}
-    const definitions = ['Center', 'Point Guard', 'Small Forward', 'Shooting Guard', 'Power Forward']
-    const position_data = []
-
-    Object.entries(players).map(player => {
-        if (!position[player[1].position] && player[1].position) {
-            position[player[1].position.split(',')[0]] = player[1].position.split(',')[0]
-        }
-        
-        return null
-    })
-
-    Object.keys(position).map((pos, i) => {
-        position_data.push({
-            value: pos,
-            label: definitions[i]
-        })
-
-        return null
-    })
+const position_filter = () => {
+    const position_data =[
+        { value: 'PG', label: 'Point Guard' },
+        { value: 'C', label: 'Center' },
+        { value: 'SF', label: 'Small Forward' },
+        { value: 'SG', label: 'Shooting Guard' },
+        { value: 'PF', label: 'Point Forward' }
+    ]
 
     position_data.sort((a, b) => (a.label > b.label ? 1 : -1))
+    console.log(position_data)
 
     return { position_data }
 }

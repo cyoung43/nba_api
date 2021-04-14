@@ -3,7 +3,9 @@ import React from 'react'
 export default function Scores () {
     return (
         <>
-            All of the scores will go right here!
+            <h2 className='text-center' style={{
+                paddingTop: '3rem'
+            }}>Check later for updates.</h2>
         </>
     )
 }

@@ -11,6 +11,7 @@ import Compare from './compare'
 import Scores from './scores'
 import Player from './players'
 import PlayerPage from './player_page'
+import Right from './right'
 
 function App () {
 
@@ -29,7 +30,7 @@ function App () {
                 <bs.Col md='8'>
                     <Switch>
                         <Route path='/team'>
-                                <Team />
+                            <Team />
                         </Route>
                         <Route path='/player/:id'>
                             <PlayerPage />
@@ -49,7 +50,7 @@ function App () {
                     </Switch>
                 </bs.Col>
                 <bs.Col md='2' className='shadow-sm' style={{backgroundColor: '#FFFFFF'}}>
-                    
+                    <Right /> 
                 </bs.Col>
                 </bs.Row>
                 <bs.Row className='no-gutters'>

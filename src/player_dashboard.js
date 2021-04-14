@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as bs from 'react-bootstrap'
 import { teamMapper } from './mapper'
 import BarChart from './bar'
@@ -12,14 +12,18 @@ import {
     card_data,
     money_data } from './player_functions'
 import RadarChart from './radar'
+import Select from 'react-select'
+import { Link } from 'react-router-dom'
+import { player_filter, player_url } from './select_functions'
 
 export default function PlayerDashboard (props) {
+    const [matchPlayer, setPlayer] = useState(null)
     const { url } = logo_url(props.data, props.player, teamMapper)
     const updated_salary = format_salary(props.player.salary)
     const { season } = current_season(props.data, props.player)
     const { data_card } = card_data(props.player)
     const { data_money } = money_data(props.player)
-    console.log(season)
+    const { player_names } = player_filter(props.data)
 
     const bar_data = {
         labels: ['PPG', 'RPG', 'APG', ['Shot', 'Distance']],
@@ -59,6 +63,34 @@ export default function PlayerDashboard (props) {
 
     return (
         <bs.Container>
+            <bs.Row >
+                <bs.Col md='5' />
+                <bs.Col md='2'>
+                    <div style={{
+                        paddingTop: '0.5rem',
+                        position: 'absolute',
+                        right: '0.5rem'
+                    }}>
+                        { matchPlayer && matchPlayer?.label !== props.player.name ?
+                            <div>
+                                <Link to={`/player/${player_url(matchPlayer.label)}`}>
+                                    <bs.Button variant='outline-dark'>See Player</bs.Button>
+                                </Link>
+                            </div> :
+                            <div></div>
+                        }
+                    </div>
+                </bs.Col>
+                <bs.Col md='5'>
+                    <div style={{
+                        paddingRight: '0.5rem',
+                        paddingTop: '0.5rem'
+                    }}>
+                        <Select options={player_names} onChange={value => setPlayer(value)} 
+                            placeholder='Change Player...' />
+                    </div>
+                </bs.Col>
+            </bs.Row>
             <bs.Row style={{
                 backgroundColor: '#29598A',
                 margin: '0.5rem',
@@ -68,8 +100,9 @@ export default function PlayerDashboard (props) {
                     <div>
                         <img src={props.url ? props.url : anonymous} 
                             alt={`${props.player.name} headshot`} style={{
-                                height: '12rem',
-                                display: 'inline'
+                                height: '13rem',
+                                display: 'inline',
+                                paddingTop: '1rem'
                             }}/>
                     </div>
                 </bs.Col>
@@ -108,7 +141,7 @@ export default function PlayerDashboard (props) {
                         display: 'inline',
                         position: 'absolute',
                         right: '1.5rem'
-                    }}><strong>Salary:</strong> ${updated_salary}</div>
+                    }}><strong>Salary:</strong> ${typeof updated_salary === 'object' ? updated_salary.updated_salary : updated_salary}</div>
                     <hr />
                 </bs.Col>
             </bs.Row>

@@ -11,11 +11,12 @@ export default function PlayerPage (props) {
     const match = useRouteMatch({path: '/player/:id', strict: true, sensitive: true})
     const { player } = match_player(context.players, match.params.id.split('-'))
  
-    console.log(context.players)
     try {
         const nba = require('nba-api-client')
-        const player_pic = nba.getPlayerID(player.name)
+        const name = player.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        const player_pic = nba.getPlayerID(name)
         const { pic_url } = test_pic(player_pic)
+        
         if (!player) {
             return (
                 <div>
@@ -23,7 +24,7 @@ export default function PlayerPage (props) {
                 </div>
             )
         }
-        console.log(player)
+        
         return (
             <>
                 <PlayerDashboard url={pic_url} player={player} data={context.players} />

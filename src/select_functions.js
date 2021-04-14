@@ -71,7 +71,6 @@ const position_filter = () => {
     ]
 
     position_data.sort((a, b) => (a.label > b.label ? 1 : -1))
-    console.log(position_data)
 
     return { position_data }
 }

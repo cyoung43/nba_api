@@ -64,4 +64,37 @@ const name_mapper = {
     WashingtonWizards: "WAS"
 }
 
-export { teamMapper, name_mapper}
+const team_names = {
+    ATL: ['Atlanta Hawks', 'Hawks'],
+    BOS: ['Boston Celtics', 'Celtics'],
+    BRK: ['Brooklyn Nets', 'Nets'],
+    CHI: ['Chicago Bulls', 'Bulls'],
+    CHO: ['Charlotte Hornets', 'Hornets'],
+    CLE: ['Cleveland Cavaliers', 'Cavaliers'],
+    DAL: ['Dallas Mavericks', 'Mavericks'],
+    DEN: ['Denver Nuggets', 'Nuggets'],
+    DET: ['Detroit Pistons', 'Pistons'],
+    GSW: ['Golden State Warriors', 'Warriors'],
+    HOU: ['Houston Rockets', 'Rockets'],
+    IND: ['Indiana Pacers', 'Pacers'],
+    LAC: ['Los Angeles Clippers', 'Clippers'],
+    LAL: ['Los Angeles Lakers', 'Lakers'],
+    MEM: ['Memphis Grizzlies', 'Grizzlies'],
+    MIA: ['Miami Heat', 'Heat'],
+    MIL: ['Milwaukee Bucks', 'Bucks'],
+    MIN: ['Minnesota Timberwolves', 'Timberwolves'],
+    NOP: ['New Orleans Pelicans', 'Pelicans'],
+    NYK: ['New York Knicks', 'Knicks'],
+    OKC: ['Oklahoma City Thunder', 'Thunder'],
+    ORL: ['Orlando Magic', 'Magic'],
+    PHI: ['Philadelphia 76ers', '76ers'],
+    PHO: ['Phoenix Suns', 'Suns'],
+    POR: ['Portland Trail Blazers', 'Trail Blazers'],
+    SAC: ['Sacramento Kings', 'Kings'],
+    SAS: ['San Antonio Spurs', 'Spurs'],
+    TOR: ['Toronto Raptors', 'Raptors'],
+    UTA: ['Utah Jazz', 'Jazz'],
+    WAS: ['Washington Wizards', 'Wizards'],
+}
+
+export { teamMapper, name_mapper, team_names}

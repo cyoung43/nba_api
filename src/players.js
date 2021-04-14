@@ -3,13 +3,11 @@ import AppContext from './context'
 import * as bs from 'react-bootstrap'
 import Select from 'react-select'
 import { Link } from 'react-router-dom'
-import Loading from './loading'
 import { player_filter, team_filters, position_filter, player_url } from './select_functions'
 
 export default function Player () {
     const context = useContext(AppContext)
     const [player, setPlayer] = useState(null)
-    console.log(player)
     const [team, setTeam] = useState(null)
     const [position, setPosition] = useState(null)
     const { player_names } = player_filter(context.players, team, position)
@@ -70,7 +68,7 @@ export default function Player () {
                     <div style={{
                         display: 'flex',
                         justifyContent: 'center',
-                        paddingTop: '1rem'
+                        paddingTop: '2rem'
                     }}>
                         <Link className='button' to={`/player/${player_url(player.label)}`}>
                             <bs.Button variant='outline-dark'>

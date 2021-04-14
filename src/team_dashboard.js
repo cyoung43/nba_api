@@ -163,7 +163,6 @@ export default function Dashboard (props) {
             }}>
                 { 
                     stats.map(stat => {
-                        console.log(stat)
                         return (
                             <bs.Col md='3' key={stat[1]}>
                                 <bs.Card>

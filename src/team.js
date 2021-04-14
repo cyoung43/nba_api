@@ -9,6 +9,15 @@ import Dashboard from './team_dashboard'
 export default function Team () {
     const context = useContext(AppContext)
     const match = useRouteMatch({path: '/team/:id', strict: true, sensitive: true})
+
+    if (!match) {
+        return (
+            <>
+                <NotFound />
+            </>
+        )
+    }
+
     const team_id = match.params.id
     let teams
     let schedule

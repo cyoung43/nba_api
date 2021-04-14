@@ -1,0 +1,5 @@
+.teamLink:hover {
+    font-size: .9rem;
+    transition: font-size .5s;
+    text-decoration: none;
+}

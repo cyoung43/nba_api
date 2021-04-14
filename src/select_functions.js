@@ -67,7 +67,7 @@ const position_filter = () => {
         { value: 'C', label: 'Center' },
         { value: 'SF', label: 'Small Forward' },
         { value: 'SG', label: 'Shooting Guard' },
-        { value: 'PF', label: 'Point Forward' }
+        { value: 'PF', label: 'Power Forward' }
     ]
 
     position_data.sort((a, b) => (a.label > b.label ? 1 : -1))

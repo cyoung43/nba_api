@@ -1,6 +1,6 @@
 import React from 'react'
 import * as bs from 'react-bootstrap'
-import teamMapper from './mapper'
+import { teamMapper } from './mapper'
 import LineChart from './line'
 import { score_data, team_points, other_stats, shooting_percentages } from './data_manipulation'
 import DonutChart from './donut'
@@ -163,11 +163,12 @@ export default function Dashboard (props) {
             }}>
                 { 
                     stats.map(stat => {
+                        console.log(stat)
                         return (
                             <bs.Col md='3' key={stat[1]}>
                                 <bs.Card>
                                     <bs.Card.Header as='h6' className='text-center'>
-                                        Rebounds Per Game
+                                        {stat[2]} Per <br /> Game
                                     </bs.Card.Header>
                                     <bs.Card.Body className='font-weight-bold text-center' style={{
                                         fontSize: '2rem'

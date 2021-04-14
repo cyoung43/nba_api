@@ -1,26 +1,22 @@
 import React from 'react'
-import { Spinner } from 'react-bootstrap'
+import * as bs from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 export default function Loading (props) {
     return (
-        <>
-            {
-                props.header === 'Teams' ?
-                <h5 style={{
-                    padding: '1rem',
-                    alignText: 'center'
-                }}>{props.header} Loading...</h5> :
-                <div className='flex-column' style={{
-                    justifyContent: 'center'
-                }}>
-                    <br /><br />
-                    <h3 style={{
-                        padding: '1rem',
-                        alignText: 'center',
-                        alignContent: 'center'
-                    }}>{props.header} Loading... <Spinner animation='border' variant='secondary' /></h3>
-                </div>
-            }
-        </>
+        <bs.Container style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'relative',
+        }}>
+            <div className='align-middle' style={{
+                position: 'absolute',
+                top: '6rem'
+            }}>
+                <FontAwesomeIcon icon={faSpinner} spin size='3x' className='align-middle' />
+            </div>
+        </bs.Container>
     )
 }

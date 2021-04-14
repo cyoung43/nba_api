@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import AppContext from './context'
 import Nav from 'react-bootstrap/Nav'
 import Loading from './loading'
 import { Link } from 'react-router-dom'
+import './left.css'
 
 
 export default function Left () {
     const context = React.useContext(AppContext)
-    const [size, setSize] = useState(false)
     let team
 
     try {
@@ -33,13 +33,12 @@ export default function Left () {
                     {
                         Object.entries(team).sort((a, b) => (a[1].name > b[1].name ? 1 : -1)).map(team => {
                             return (
-                                <div key={team[1].abbreviation} onMouseOver={() => setSize(true)} onMouseLeave={() => setSize(false)} style={{
-                                    fontSize: `${size ? '0.9rem' : '0.8rem'}`
+                                <div key={team[1].abbreviation} style={{
+                                    fontSize: '0.8rem'
                                 }}>
-                                    <Link key={team[1].abbreviation} to={`/team/${team[1].abbreviation}`} style={{
+                                    <Link key={team[1].abbreviation} to={`/team/${team[1].abbreviation}`} className='teamLink' style={{
                                         paddingLeft: '.8rem',
                                         color: 'black',
-                                        fontSize: `${size ? '0.9rem' : '0.8rem'}`
                                     }}><strong>{team[1].abbreviation}:</strong> {team[1].name}</Link>
                                 </div>
                             )

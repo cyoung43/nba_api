@@ -57,10 +57,10 @@ const other_stats = (rebounds, assists, steals, turnovers, games) => {
     const tpg = (turnovers / games).toFixed(2)
 
     return [
-        [rpg, 'rpg'],
-        [apg, 'apg'],
-        [spg, 'spg'],
-        [tpg, 'tpg']
+        [rpg, 'rpg', 'Rebounds'],
+        [apg, 'apg', 'Assists'],
+        [spg, 'spg', 'Steals'],
+        [tpg, 'tpg', 'Turnovers']
     ]
 }
 

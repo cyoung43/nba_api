@@ -31,4 +31,37 @@ const teamMapper = {
     WAS: "WAS"
 }
 
-export default teamMapper
+const name_mapper = {
+    AtlantaHawks: "ATL",
+    BostonCeltics: "BOS",
+    BrooklynNets: "BKN",
+    ChicagoBulls: "CHI",
+    CharlotteHornets: "CHA",
+    ClevelandCavaliers: "CLE",
+    DallasMavericks: "DAL",
+    DenverNuggets: "DEN",
+    DetroitPistons: "DET",
+    GoldenStateWarriors: "GSW",
+    HoustonRockets: "HOU",
+    IndianaPacers: "IND",
+    LosAngelesClippers: "LAC",
+    LosAngelesLakers: "LAL",
+    MemphisGrizzlies: "MEM",
+    MiamiHeat: "MIA",
+    MilwaukeeBucks: "MIL",
+    MinnesotaTimberwolves: "MIN",
+    NewOrleansPelicans: "NOP",
+    NewYorkKnicks: "NYK",
+    OklahomaCityThunder: "OKC",
+    OrlandoMagic: "ORL",
+    Philadelphia76ers: "PHI",
+    PhoenixSuns: "PHX",
+    PortlandTrailBlazers: "POR",
+    SacramentoKings: "SAC",
+    SanAntonioSpurs: "SAS",
+    TorontoRaptors: "TOR",
+    UtahJazz: "UTA",
+    WashingtonWizards: "WAS"
+}
+
+export { teamMapper, name_mapper}

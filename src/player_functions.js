@@ -75,7 +75,7 @@ const format_salary = (salary) => {
     updated_salary = updated_salary.split('').reverse().join('')
 
     if (updated_salary.split('')[0] === ',') {
-        updated_salary = updated_salary.split('').slice(1, updated_salary.split('').length)
+        updated_salary = updated_salary.split('').slice(1, updated_salary.split('').length).join('')
     }
 
     return updated_salary

@@ -61,6 +61,8 @@ export default function PlayerDashboard (props) {
         }]
     }
 
+    console.log(updated_salary)
+
     return (
         <bs.Container>
             <bs.Row >

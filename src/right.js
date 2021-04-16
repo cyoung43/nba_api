@@ -43,7 +43,7 @@ export default function Right () {
                 <h6 className='text-center'>
                     {wins}-{losses}
                 </h6>
-                <RightData games={games} size={showMore} />
+                <RightData games={games} size={showMore} team={team_id} />
                 <div style={{
                     display: 'flex',
                     justifyContent: 'center',
@@ -61,7 +61,7 @@ export default function Right () {
         )
     }
     catch (err) {
-        
+        console.log(err)
         return (
             <>
             </>

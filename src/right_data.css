@@ -1,0 +1,11 @@
+.gameLink:hover {
+    font-size: .9rem;
+    transition: font-size .5s;
+    text-decoration: none;
+}
+
+.gameLink:focus {
+    border-bottom: 1px solid black;
+    padding-bottom: 0.2em;
+    transition: border-bottom .2s;
+}

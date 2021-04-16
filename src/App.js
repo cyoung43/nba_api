@@ -12,6 +12,7 @@ import Scores from './scores'
 import Player from './players'
 import PlayerPage from './player_page'
 import Right from './right'
+import Game from './game'
 
 function App () {
 
@@ -29,6 +30,9 @@ function App () {
                 </bs.Col>
                 <bs.Col md='8'>
                     <Switch>
+                        <Route path='/team/:id/game/:gid'>
+                            <Game />
+                        </Route>
                         <Route path='/team'>
                             <Team />
                         </Route>

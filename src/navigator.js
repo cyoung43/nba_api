@@ -24,7 +24,7 @@ export default function Navigator () {
             <bs.Navbar.Collapse id='basic-Navbar-Nav'>
                 <bs.Nav className='mr-auto'>
                     <Link className='nav-link' to='/player'>Players</Link>
-                    <Link className='nav-link' to='scores'>Live Scores</Link>            
+                    {/*<Link className='nav-link' to='scores'>Live Scores</Link>*/}            
                 </bs.Nav>
                 <bs.Form inline>
                 <bs.FormControl type='text' placeholder='Search' className='mr-sm-2' />

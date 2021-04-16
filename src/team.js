@@ -25,11 +25,13 @@ export default function Team () {
     try {
         teams = context.season
         schedule = context.schedule
+
         if (!teams[team_id]) {
             return (
                 <NotFound />
             )
         }
+
         return (
             <>
                 <Dashboard name={teams[team_id].name} id={team_id} teams={teams} schedule={schedule}/>
@@ -37,7 +39,7 @@ export default function Team () {
         )
     }
     catch (err) {
-        // Handle this better
+        
         return (
             <>
                 <Loading header='Team'/>

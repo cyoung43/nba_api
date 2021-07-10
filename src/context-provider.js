@@ -3,6 +3,12 @@ import axios from 'axios'
 import AppContext from './context'
 import App from './App'
 
+// remove upon success of sportsipy package
+import players from './api/players.json'
+import season from './api/season.json'
+import schedule from './api/schedule.json'
+import all_games from './api/all_games.json'
+
 /** The context provider for our app */
 export default class AppProvider extends React.Component {
 
@@ -29,16 +35,19 @@ export default class AppProvider extends React.Component {
     }
 
     async componentDidMount() {
-        const season = await axios.get('http://ec2-54-234-191-128.compute-1.amazonaws.com/data/season.json')
-        const players = await axios.get('http://ec2-54-234-191-128.compute-1.amazonaws.com/data/players.json')
-        const schedule = await axios.get('http://ec2-54-234-191-128.compute-1.amazonaws.com/data/schedule.json')
-        const games = await axios.get('http://ec2-54-234-191-128.compute-1.amazonaws.com/data/all_games.json')
+        // For reference once package is up and running again
+        // 'http://ec2-54-234-191-128.compute-1.amazonaws.com/data/season.json'
+
+        // const season = await axios.get('./api/season.json')
+        // const players = await axios.get('./api/players.json')
+        // const schedule = await axios.get('./api/schedule.json')
+        // const games = await axios.get('./api/all_games.json')
 
         this.setState({
-            season: season.data, 
-            players: players.data,
-            schedule: schedule.data,
-            games: games.data
+            season: season, 
+            players: players,
+            schedule: schedule,
+            games: all_games
         })
     }
 }

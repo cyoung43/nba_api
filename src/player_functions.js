@@ -139,22 +139,22 @@ const money_data = (player) => {
     const data_money = [
         {
             value: format_salary((player.salary / player.field_goals).toFixed(0)),
-            label: 'Cost Per Made Shot',
+            label: 'Earnings Per Made Shot',
             id: 'cp-m'
         },
         {
             value: format_salary((player.salary / (player.field_goal_attempts - player.field_goals)).toFixed(0)),
-            label: 'Cost Per Missed Shot',
+            label: 'Earnings Per Missed Shot',
             id: 'cp-s'
         },
         {
             value: format_salary((player.salary / player.games_played).toFixed(0)),
-            label: 'Cost Per Game Played',
+            label: 'Earnings Per Game Played',
             id: 'cp-g'
         },
         {
             value: format_salary((player.salary / player.points).toFixed(0)),
-            label: 'Cost Per Point Scored',
+            label: 'Earnings Per Point Scored',
             id: 'cp-p'
         }
     ]

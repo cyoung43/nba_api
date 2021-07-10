@@ -61,7 +61,6 @@ export default function Right () {
         )
     }
     catch (err) {
-        console.log(err)
         return (
             <>
             </>

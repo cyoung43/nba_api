@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import AppContext from './context'
 import App from './App'
 
